@@ -25,7 +25,7 @@ function addClickListener(elementId, url) {
                 }
                 var newTab = window.open('about:blank', '_blank');
                 newTab.document.write('<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body><iframe frameborder="0" style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0%;left:0px;right:0px;bottom:0px" height="100%" width="100%" src="' + url + '"></iframe></body></html>');
-                window.location.href = 'https://thunderos.rf.gd/404/';
+                window.location.href = 'https://t0s.pages.dev/404/';
             }
         });
     }
@@ -36,9 +36,9 @@ if (/Mobi|Android|iPad|iPhone/i.test(navigator.userAgent)) {
         window.location.href = 'https://thunderos.glitch.me/app';
     });
 } else {
-    addClickListener('2.securityboot', 'https://thunderos.rf.gd/locker/index.html?hash=U2FsdGVkX190JI5N6nwLCu6NtGr4wsXYzw40Zh52Cqs1L2a3S4hmrozNfScJNHqAvxo7p1L2u3SkbhJe9alAfwBbp6p1L2u3S9K3bHlA6ge1Q2u3A4le1Q2u3A4l');
+    addClickListener('2.securityboot', 'https://t0s.pages.dev/locker/index.html?hash=U2FsdGVkX190JI5N6nwLCu6NtGr4wsXYzw40Zh52Cqs1L2a3S4hmrozNfScJNHqAvxo7p1L2u3SkbhJe9alAfwBbp6p1L2u3S9K3bHlA6ge1Q2u3A4le1Q2u3A4l');
 }
 
-addClickListener('1.securityboot', 'https://thunderos.rf.gd/locker/index.html?hash=U2FsdGVkX1p1L2u3SMCT72RGDR12GAinII5fJe5ZWHa8jwumBsu8BcjAhqym6zzaw18QdO');
+addClickListener('1.securityboot', 'https://t0s.pages.dev/locker/index.html?hash=U2FsdGVkX1p1L2u3SMCT72RGDR12GAinII5fJe5ZWHa8jwumBsu8BcjAhqym6zzaw18QdO');
 addClickListener('3.securityboot', 'https://raw.githack.com/Shadowolfofficial/Tos/main/peb.html');
-addClickListener('4.securityboot', 'https://thunderos.rf.gd/locker/index.html?hash=U2FsdGVkX1p1L2u3SL6Xtjb6JifeNJkcGZJw9R1QvSOs1L2a3S4hmwrARJzXX11zKoHsV9mWffb1qM');
+addClickListener('4.securityboot', 'https://t0s.pages.dev/locker/index.html?hash=U2FsdGVkX1p1L2u3SL6Xtjb6JifeNJkcGZJw9R1QvSOs1L2a3S4hmwrARJzXX11zKoHsV9mWffb1qM');

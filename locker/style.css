@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+*{
+    font-family: 'JetBrains Mono', monospace;
+}
+body{
+    margin: 0;
+
+    
+  }
+
+
+  video{
+    object-fit:cover;
+    width:100vw;
+    height:100vh;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:-3;
+  }
+#particles{
+    z-index: -3;
+}
+.heading{
+    font-size: 45px;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 120px;
+    margin-top: 100px;
+    max-width: fit-content;
+}
+.main-div, .main-div2{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    z-index: 4;
+    
+}
+#lock_btn, #unlock_btn, #copy_btn{
+background: rgba( 255, 255, 255, 0.3 );
+  backdrop-filter: blur( 5.5px );
+    -webkit-backdrop-filter: blur( 5.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+
+
+
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    height: 42px;
+    width: 150px;
+    border-radius: 5px;
+    border: 0.1px transparent black;
+    
+   
+    font-size: 16px;
+    padding: 2px;
+}
+#lock_btn:hover, #unlock_btn:hover, #copy_btn:hover{
+    color: black;
+    background: linear-gradient(90deg, #0ac6a6, #053754);
+    border: 1px solid black;
+    transition: 200ms;
+    cursor: pointer;
+}
+.lock_div input, .unlock_div input{
+    width: 300px;
+    height: 40px;
+ 
+    outline: none;
+    border-radius: 5px;
+    padding-left: 4px;
+    font-size: 18px;
+    margin-bottom: 7px;
+    margin-top: 0;
+}
+#lurl_qr{
+    display: block;
+    margin: 0 auto;
+    margin-top: 25px;
+    border: 1px solid black;
+    outline: none;
+    border-radius: 5px;
+    padding: 10px;
+    height: 150px;
+    width: 150px;
+    
+}
+textarea{
+    width: 300px;
+   
+    outline: none;
+    border-radius: 5px;
+    padding-left: 4px;
+    font-size: 15px;
+    margin-bottom: 7px;
+    margin-top: 20px;
+    resize: none;
+
+}
+
+
+.card {
+    width: 190px;
+    height: 254px;
+    background: white;
+    border-radius: 10px;
+    transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   }
+   
+   .shadow {
+    box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1),
+                0 0  0 2px rgb(190, 190, 190),
+                0.3em 0.3em 1em rgba(0,0,0,0.3);
+   }
+   

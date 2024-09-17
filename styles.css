@@ -1,0 +1,134 @@
+/* Styles CSS avec un design adaptatif */
+body {
+    background-color: #121212;
+    color: #FFFFFF;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+h1, h2 {
+    margin: 0;
+}
+
+h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 14px;
+    margin: 0;
+}
+
+p.conditions span {
+    cursor: pointer;
+    color: #ffffff;
+    background: transparent;
+    text-decoration: underline;
+}
+
+button {
+    background-color: #FFC107;
+    color: #000000;
+    font-weight: bold;
+    padding: 15px 30px;
+    margin: 5px 0;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.8), 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    box-shadow: -10px -10px 20px rgba(255, 255, 255, 0.8), 10px 10px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+}
+
+button:active {
+    box-shadow: inset -3px -3px 5px rgba(0, 0, 0, 0.2), inset 3px 3px 5px rgba(255, 255, 255, 0.4);
+    transform: translateY(0);
+}
+
+.btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+footer {
+    background-color: #333333;
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    animation: footerSlideUp 0.5s ease-out;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.social-links {
+    display: flex;
+    gap: 10px;
+}
+
+.social-links a img {
+    width: 24px;
+    height: 24px;
+    transition: filter 0.3s ease;
+}
+
+.social-links a:hover img {
+    filter: brightness(1.5);
+}
+
+.kofi-button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-left: auto;
+}
+
+.contact-info {
+    display: none;
+}
+
+.content {
+    margin-bottom: 60px;
+}
+
+@keyframes footerSlideUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}

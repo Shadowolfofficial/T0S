@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            z-index: 1;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.5); /* semi-transparent background */
+            width: 90%;
+            max-width: 400px;
+        }
+        .main-div2 {
+            margin-top: 20px;
+        }
+        p {
+            color: white;
+        }
+        input, button, textarea {
+            margin: 10px 0;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            cursor: pointer;
+        }
+        textarea {
+            resize: none;
+        }
+        video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+        }
+        @media (max-width: 600px) {
+            .container {
+                width: 95%;
+                padding: 15px;
+            }
+            input, button, textarea {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <video src="https://cdn.glitch.global/226b4613-4fc9-4e05-ab62-4d440b6e7c61/vid.mp4?v=1726080452009" autoplay loop playsinline muted></video>
+
+    <div class="container main-div">
+        <div class="lock_div" id="lock_div_id">
+            <p>ENTER YOUR URL🔗</p>
+            <input type="url" id="url" placeholder="https://example.com" onkeydown="handleEnter(event, 'lock_btn')">
+            <p>PASSWORD🔑</p>
+            <input type="password" id="url_key" placeholder="********" autocomplete="off">
+            <button id="lock_btn" onclick="vibrateSimple()"><font style="color:black">LOCK THE URL</font></button>
+        </div>
+        <div class="url_display" id="url_display_id">
+            <textarea id="locked_url" cols="40" rows="4" readonly></textarea>
+            <button id="copy_btn" onclick="vibrateSimple()"><font style="color:white">COPY URL</font></button>
+            <img id="lurl_qr">
+        </div>
+    </div>
+
+    <div class="container main-div2">
+        <div class="unlock_div" id="unlock_div_id">
+            <p>Bienvenue !</p>
+            <p>Veuillez entrer le code d'accès à ThunderOs.</p>
+            <p>Si vous ne le connaissez pas, cliquez sur le logo ThunderOs pour l'obtenir.</p>
+            <input type="password" id="lurl_key" placeholder="********" autocomplete="off" onkeydown="handleEnter(event, 'unlock_btn')">
+            <button id="unlock_btn" onclick="vibrateSimple()"><font style="color:white">OK</font></button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function vibrateSimple() {
+            navigator.vibrate(100);
+        }
+
+        function handleEnter(event, buttonId) {
+            if (event.key === 'Enter') {
+                document.getElementById(buttonId).click();
+            }
+        }
+
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("/service-worker.js")
+                .then(registration => console.log("Service Worker registered"))
+                .catch(error => console.error("Error registering Service Worker:", error));
+        }
+
+        // Focus the first input field when the page loads
+        window.onload = function() {
+            document.getElementById('url').focus();
+            document.getElementById('lurl_key').focus(); // Ajout pour donner le focus au champ de mot de passe
+        }
+    </script>
+</body>
+</html>

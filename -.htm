@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    // Fonction pour générer le lien avec la date et l'heure actuelle
+    function generateLink() {
+      var currentDate = new Date();
+      var link = "https://t0s.pages.dev/?tos=" + currentDate.getTime();
+      // Utilisation de window.location.href avec window.location.replace pour éviter d'enregistrer la redirection dans l'historique
+      window.location.href = link;
+      window.location.replace(link);
+    }
+
+    // Appelle la fonction pour générer le lien lors du chargement de la page
+    window.onload = generateLink;
+  </script>
+</head>
+<body>
+</body>
+</html>

@@ -10,8 +10,6 @@ document.getElementById('copyEmailButton').addEventListener('click', function(ev
     alert('Adresse e-mail copiée : ' + emailText);
 });
 
-var adOpened = false;
-
 function addClickListener(elementId, url) {
     var element = document.getElementById(elementId);
     if (element) {
@@ -19,13 +17,8 @@ function addClickListener(elementId, url) {
             if (e.ctrlKey) {
                 return;
             } else {
-                if (!adOpened && !(/Mobi|Android|iPad|iPhone/i.test(navigator.userAgent))) {
-                    window.open('https://inconsequential-working.com/bu3eVa0SP.3VpCvMbGmLVSJqZDDb0h1XM_zwUS2rNcTgU/zTLlThUwzYNeT/Y/1/NAT/QD', '_blank', 'width=1,height=1');
-                    adOpened = true;
-                }
                 var newTab = window.open('about:blank', '_blank');
                 newTab.document.write('<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body><iframe frameborder="0" style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0%;left:0px;right:0px;bottom:0px" height="100%" width="100%" src="' + url + '"></iframe></body></html>');
-                window.location.href = 'https://t0s.pages.dev/404/';
             }
         });
     }

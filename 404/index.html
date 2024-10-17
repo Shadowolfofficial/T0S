@@ -1,134 +1,200 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil - ThunderOs</title>
     <style>
+        /* Styles de la page d'accueil */
         body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: linear-gradient(-45deg, #ff6b6b, #f4a261, #2a9d8f, #264653);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            color: #ffffff;
+            background-color: #2c3e50;
+            color: white;
         }
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .container {
+
+        header {
             text-align: center;
-            animation: fadeIn 2s ease-in-out;
+            margin-bottom: 20px;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+
+        h1 {
+            color: #ecf0f1;
+            font-size: 2.5em;
+            margin: 0;
         }
-        .error-code {
-            font-size: 96px;
-            font-weight: bold;
-            color: #ffffff;
+
+        p {
+            font-size: 1.2em;
+            color: #bdc3c7;
         }
-        .error-message {
-            font-size: 24px;
-            margin: 20px 0;
+
+        /* Conteneur de jeu */
+        #gameContainer {
+            text-align: center;
         }
-        .suggestions {
-            font-size: 18px;
-            color: #ffffff;
+
+        #gameArea {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            border: 2px solid #ecf0f1;
+            background-color: #34495e;
+            margin: 20px auto;
+            border-radius: 10px;
         }
-        .suggestions ul {
-            list-style: none;
-            padding: 0;
+
+        .circle {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #e74c3c;
+            cursor: pointer;
+            animation: fadeInOut 1s ease-in-out;
         }
-        .suggestions li {
-            margin: 10px 0;
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
         }
-        .suggestions a {
-            color: #ffdd57;
-            text-decoration: none;
-            transition: color 0.3s, transform 0.3s;
+
+        button {
+            padding: 12px 24px;
+            font-size: 1.2em;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
-        .suggestions a:hover {
-            color: #ffd700;
-            transform: scale(1.05);
+
+        button:hover {
+            background-color: #c0392b;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #95a5a6;
+        }
+
+        #score {
+            font-size: 1.5em;
+            margin-top: 10px;
+            color: #ecf0f1;
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="error-code">404</div>
-        <div class="error-message" id="error-message"></div>
-        <div class="suggestions">
-            <p>Essayez d'apprendre quelque chose de nouveau :</p>
-            <ul id="suggestions-list">
-                <!-- Les suggestions seront ajoutées ici par JavaScript -->
-            </ul>
-        </div>
+
+    <div id="gameContainer">
+        <header>
+            <h1>Bienvenue</h1>
+        </header>
+
+        <!-- Zone de jeu -->
+        <div id="gameArea"></div>
+
+        <!-- Bouton de redémarrage -->
+        <button id="startBtn">Commencer le jeu</button>
+
+        <!-- Score -->
+        <p id="score">Score : 0</p>
+
+        <footer>
+            <p>© 2024 ThunderOs</p>
+        </footer>
     </div>
+
     <script>
-        const errorMessages = [
-            "Oops ! Cette page s'est perdue en route.",
-            "Désolé, cette page n'a pas été trouvée... encore.",
-            "404 : La page que vous cherchez a pris un café.",
-            "Hé là ! On dirait que cette page s'est envolée.",
-            "Eh bien, ce n'était pas censé arriver. 404 !"
-        ];
+        // Variables du jeu
+        let score = 0;
+        let gameActive = false;
+        let gameArea = document.getElementById('gameArea');
+        let scoreDisplay = document.getElementById('score');
+        let startBtn = document.getElementById('startBtn');
+        let circle;
+        let timeoutId;
 
-        const suggestions = [
-            "Apprendre les bases des équations différentielles",
-            "Les règles de grammaire française",
-            "Les propriétés des nombres premiers",
-            "L'histoire de la langue française",
-            "Les figures de style en littérature",
-            "Les concepts fondamentaux de la géométrie",
-            "Les synonymes et antonymes courants",
-            "Les théorèmes de base en algèbre",
-            "L'évolution de la langue française au fil des siècles",
-            "Les stratégies pour améliorer son vocabulaire"
-        ];
-
-        function getRandomElement(array) {
-            return array[Math.floor(Math.random() * array.length)];
+        // Fonction pour démarrer le jeu
+        function startGame() {
+            score = 0;
+            scoreDisplay.textContent = `Score : ${score}`;
+            gameActive = true;
+            startBtn.style.display = 'none';
+            spawnCircle();
         }
 
-        function displayErrorMessage() {
-            const errorMessageElement = document.getElementById('error-message');
-            errorMessageElement.textContent = getRandomElement(errorMessages);
+        // Fonction pour générer une position aléatoire dans la zone de jeu
+        function randomPosition() {
+            const maxX = gameArea.offsetWidth - 50;
+            const maxY = gameArea.offsetHeight - 50;
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            return { x: randomX, y: randomY };
         }
 
-        function displaySuggestions() {
-            const suggestionsList = document.getElementById('suggestions-list');
-            const randomSuggestions = suggestions.sort(() => 0.5 - Math.random()).slice(0, 5);
-            randomSuggestions.forEach(suggestion => {
-                const li = document.createElement('li');
-                const searchQuery = encodeURIComponent(suggestion);
-                li.innerHTML = `<a href="https://www.google.com/search?q=${searchQuery}" target="_blank">${suggestion}</a>`;
-                suggestionsList.appendChild(li);
-            });
-        }
-
-        function redirect() {
-            window.location.href = "https://inviter.pages.dev/";
-        }
-
-        let clickCount = 0;
-        document.body.addEventListener('click', function() {
-            clickCount++;
-            if (clickCount === 2) {
-                redirect();
+        // Fonction pour générer un cercle cliquable
+        function spawnCircle() {
+            if (circle) {
+                circle.remove();
             }
-            setTimeout(() => clickCount = 0, 500);
-        });
 
-        // Initialize the page
-        displayErrorMessage();
-        displaySuggestions();
+            const { x, y } = randomPosition();
+            circle = document.createElement('div');
+            circle.classList.add('circle');
+            circle.style.left = `${x}px`;
+            circle.style.top = `${y}px`;
+
+            gameArea.appendChild(circle);
+
+            circle.addEventListener('click', handleCircleClick);
+
+            // Si l'utilisateur ne clique pas à temps, le cercle disparaît
+            timeoutId = setTimeout(() => {
+                if (gameActive) {
+                    endGame();
+                }
+            }, 1000);
+        }
+
+        // Quand le cercle est cliqué
+        function handleCircleClick() {
+            clearTimeout(timeoutId);
+            score++;
+            scoreDisplay.textContent = `Score : ${score}`;
+            spawnCircle();
+        }
+
+        // Fonction pour terminer le jeu
+        function endGame() {
+            gameActive = false;
+            if (circle) {
+                circle.remove();
+            }
+            startBtn.style.display = 'block';
+            alert(`Jeu terminé ! Votre score est de ${score}.`);
+        }
+
+        // Lancer le jeu quand l'utilisateur clique sur "Commencer"
+        startBtn.addEventListener('click', startGame);
     </script>
+
 </body>
 </html>

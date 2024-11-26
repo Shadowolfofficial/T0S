@@ -1,4 +1,4 @@
-document.getElementById('copyEmailButton').addEventListener('click', function(event) {
+document.getElementById('copyEmailButton').addEventListener('dblclick', function(event) {
     event.preventDefault();
     const emailText = document.getElementById('emailAddress').innerText;
     const textarea = document.createElement('textarea');
@@ -10,10 +10,10 @@ document.getElementById('copyEmailButton').addEventListener('click', function(ev
     alert('Adresse e-mail copiée : ' + emailText);
 });
 
-function addClickListener(elementId, url) {
+function addDoubleClickListener(elementId, url) {
     var element = document.getElementById(elementId);
     if (element) {
-        element.addEventListener('click', function(e) {
+        element.addEventListener('dblclick', function(e) {
             if (e.ctrlKey) {
                 return;
             } else {
@@ -24,14 +24,15 @@ function addClickListener(elementId, url) {
     }
 }
 
+// Vérification si le dispositif est mobile ou non, et ajout des événements de double-clic
 if (/Mobi|Android|iPad|iPhone/i.test(navigator.userAgent)) {
-    document.getElementById('2.securityboot').addEventListener('click', function() {
+    document.getElementById('2.securityboot').addEventListener('dblclick', function() {
         window.location.href = 'https://thunderos.glitch.me/app';
     });
 } else {
-    addClickListener('2.securityboot', 'https://t0s.pages.dev/locker/index.html?hash=U2FsdGVkX190JI5N6nwLCu6NtGr4wsXYzw40Zh52Cqs1L2a3S4hmrozNfScJNHqAvxo7p1L2u3SkbhJe9alAfwBbp6p1L2u3S9K3bHlA6ge1Q2u3A4le1Q2u3A4l');
+    addDoubleClickListener('2.securityboot', 'https://t0s.pages.dev/locker/index.html?hash=U2FsdGVkX190JI5N6nwLCu6NtGr4wsXYzw40Zh52Cqs1L2a3S4hmrozNfScJNHqAvxo7p1L2u3SkbhJe9alAfwBbp6p1L2u3S9K3bHlA6ge1Q2u3A4le1Q2u3A4l');
 }
 
-addClickListener('1.securityboot', 'https://t0s.pages.dev/locker/index.html?hash=U2FsdGVkX1p1L2u3SMCT72RGDR12GAinII5fJe5ZWHa8jwumBsu8BcjAhqym6zzaw18QdO');
-addClickListener('3.securityboot', 'https://raw.githack.com/Shadowolfofficial/Tos/main/peb.html');
-addClickListener('4.securityboot', 'https://t0s.pages.dev/locker/index.html?hash=U2FsdGVkX1p1L2u3SL6Xtjb6JifeNJkcGZJw9R1QvSOs1L2a3S4hmwrARJzXX11zKoHsV9mWffb1qM');
+addDoubleClickListener('1.securityboot', 'https://t0s.pages.dev/locker/index.html?hash=U2FsdGVkX1p1L2u3SMCT72RGDR12GAinII5fJe5ZWHa8jwumBsu8BcjAhqym6zzaw18QdO');
+addDoubleClickListener('3.securityboot', 'https://raw.githack.com/Shadowolfofficial/Tos/main/peb.html');
+addDoubleClickListener('4.securityboot', 'https://t0s.pages.dev/locker/index.html?hash=U2FsdGVkX1p1L2u3SL6Xtjb6JifeNJkcGZJw9R1QvSOs1L2a3S4hmwrARJzXX11zKoHsV9mWffb1qM');

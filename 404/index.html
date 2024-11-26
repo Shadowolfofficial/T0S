@@ -1,200 +1,179 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil - ThunderOs</title>
+    <script defer src="./script.js"></script>
+    <title>404</title>
     <style>
-        /* Styles de la page d'accueil */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: #2c3e50;
-            color: white;
+            text-align: center;
+            overflow: hidden;
+            color: #333;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 20px;
+        .container {
+            max-width: 600px;
+            width: 100%;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-out;
         }
 
         h1 {
-            color: #ecf0f1;
-            font-size: 2.5em;
-            margin: 0;
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #e74c3c;
         }
 
         p {
             font-size: 1.2em;
-            color: #bdc3c7;
+            margin: 20px 0;
+            color: #555;
         }
 
-        /* Conteneur de jeu */
-        #gameContainer {
-            text-align: center;
+        .suggestions {
+            font-size: 1.1em;
+            margin-top: 20px;
+            color: #2c3e50;
         }
 
-        #gameArea {
-            position: relative;
-            width: 600px;
-            height: 600px;
-            border: 2px solid #ecf0f1;
-            background-color: #34495e;
-            margin: 20px auto;
-            border-radius: 10px;
+        .suggestions ul {
+            list-style-type: none;
+            padding: 0;
         }
 
-        .circle {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: #e74c3c;
-            cursor: pointer;
-            animation: fadeInOut 1s ease-in-out;
+        .suggestions li {
+            margin: 10px 0;
+            font-size: 1.1em;
         }
 
-        @keyframes fadeInOut {
+        .suggestions a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s, transform 0.2s;
+        }
+
+        .suggestions a:hover {
+            color: #e74c3c;
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeIn {
             0% {
                 opacity: 0;
-            }
-            50% {
-                opacity: 1;
+                transform: translateY(30px);
             }
             100% {
-                opacity: 0;
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        button {
-            padding: 12px 24px;
-            font-size: 1.2em;
-            background-color: #e74c3c;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
 
-        button:hover {
-            background-color: #c0392b;
-        }
-
-        footer {
-            margin-top: 20px;
-            font-size: 0.9em;
-            color: #95a5a6;
-        }
-
-        #score {
-            font-size: 1.5em;
-            margin-top: 10px;
-            color: #ecf0f1;
+            .container {
+                padding: 20px;
+            }
         }
     </style>
 </head>
-
 <body>
 
-    <div id="gameContainer">
-        <header>
-            <h1>Bienvenue</h1>
-        </header>
-
-        <!-- Zone de jeu -->
-        <div id="gameArea"></div>
-
-        <!-- Bouton de redémarrage -->
-        <button id="startBtn">Commencer le jeu</button>
-
-        <!-- Score -->
-        <p id="score">Score : 0</p>
-
-        <footer>
-            <p>© 2024 ThunderOs</p>
-        </footer>
+<div class="container">
+    <h1 id="error-title"></h1>
+    <p>La page est introuvable. Mais pas de panique ! Utilisez cette occasion pour apprendre quelque chose de nouveau.</p>
+    
+    <div class="suggestions">
+        <p>Voici quelques suggestions pour apprendre :</p>
+        <ul id="suggestions-list"></ul>
     </div>
+</div>
 
-    <script>
-        // Variables du jeu
-        let score = 0;
-        let gameActive = false;
-        let gameArea = document.getElementById('gameArea');
-        let scoreDisplay = document.getElementById('score');
-        let startBtn = document.getElementById('startBtn');
-        let circle;
-        let timeoutId;
+<script>
+    // Titres humoristiques vraiment drôles
+    const errorTitles = [
+        "On a cherché, mais rien. Nada",
+        "Cette page a pris une pause café",
+        "La page est partie promener le chien",
+        "La page est coincée dans un embouteillage internet",
+        "Cette page a été kidnappée par des extraterrestres",
+        "Cette page s’est cachée pour jouer à cache-cache",
+        "Même Google ne sait pas où elle est",
+        "Cette page a pris la fuite",
+        "Elle est tombée dans un trou noir",
+        "Cette page est devenue un ninja"
+    ];
 
-        // Fonction pour démarrer le jeu
-        function startGame() {
-            score = 0;
-            scoreDisplay.textContent = `Score : ${score}`;
-            gameActive = true;
-            startBtn.style.display = 'none';
-            spawnCircle();
-        }
+    // Suggestions éducatives
+    const suggestions = [
+        "Apprendre les bases de l'algèbre",
+        "Comment écrire une rédaction en français",
+        "Les 100 mots les plus utilisés en anglais",
+        "Découvrir la Révolution française",
+        "Résoudre des problèmes géométriques",
+        "Conjuguer les verbes au subjonctif",
+        "Apprendre à prononcer les sons en anglais",
+        "Comprendre la Seconde Guerre mondiale",
+        "Réviser les fractions et les pourcentages",
+        "Explorer la mythologie grecque",
+        "Maîtriser les accords sujet-verbe en français",
+        "Améliorer son vocabulaire anglais",
+        "Découvrir l'histoire de l'Empire romain"
+    ];
 
-        // Fonction pour générer une position aléatoire dans la zone de jeu
-        function randomPosition() {
-            const maxX = gameArea.offsetWidth - 50;
-            const maxY = gameArea.offsetHeight - 50;
-            const randomX = Math.floor(Math.random() * maxX);
-            const randomY = Math.floor(Math.random() * maxY);
-            return { x: randomX, y: randomY };
-        }
+    // Fonds dégradés prédéfinis
+    const gradients = [
+        "linear-gradient(120deg, #ff7e5f, #feb47b)",
+        "linear-gradient(120deg, #6a11cb, #2575fc)",
+        "linear-gradient(120deg, #36d1dc, #5b86e5)",
+        "linear-gradient(120deg, #ff9966, #ff5e62)",
+        "linear-gradient(120deg, #56ab2f, #a8e063)",
+        "linear-gradient(120deg, #3a1c71, #d76d77, #ffaf7b)",
+        "linear-gradient(120deg, #f7971e, #ffd200)",
+        "linear-gradient(120deg, #4facfe, #00f2fe)"
+    ];
 
-        // Fonction pour générer un cercle cliquable
-        function spawnCircle() {
-            if (circle) {
-                circle.remove();
-            }
+    // Appliquer un dégradé aléatoire au fond
+    const randomGradient = gradients[Math.floor(Math.random() * gradients.length)];
+    document.body.style.background = randomGradient;
 
-            const { x, y } = randomPosition();
-            circle = document.createElement('div');
-            circle.classList.add('circle');
-            circle.style.left = `${x}px`;
-            circle.style.top = `${y}px`;
+    // Sélection aléatoire du titre d'erreur
+    const randomTitle = errorTitles[Math.floor(Math.random() * errorTitles.length)];
+    document.getElementById("error-title").textContent = randomTitle;
 
-            gameArea.appendChild(circle);
+    // Générer des suggestions éducatives aléatoires
+    const suggestionsList = document.getElementById("suggestions-list");
+    const shuffledSuggestions = suggestions.sort(() => 0.5 - Math.random()).slice(0, 5);
+    shuffledSuggestions.forEach(topic => {
+        const listItem = document.createElement("li");
+        const link = document.createElement("a");
+        link.href = `https://www.google.com/search?q=${encodeURIComponent(topic)}`;
+        link.target = "_blank";
+        link.textContent = topic;
+        listItem.appendChild(link);
+        suggestionsList.appendChild(listItem);
+    });
 
-            circle.addEventListener('click', handleCircleClick);
-
-            // Si l'utilisateur ne clique pas à temps, le cercle disparaît
-            timeoutId = setTimeout(() => {
-                if (gameActive) {
-                    endGame();
-                }
-            }, 1000);
-        }
-
-        // Quand le cercle est cliqué
-        function handleCircleClick() {
-            clearTimeout(timeoutId);
-            score++;
-            scoreDisplay.textContent = `Score : ${score}`;
-            spawnCircle();
-        }
-
-        // Fonction pour terminer le jeu
-        function endGame() {
-            gameActive = false;
-            if (circle) {
-                circle.remove();
-            }
-            startBtn.style.display = 'block';
-            alert(`Jeu terminé ! Votre score est de ${score}.`);
-        }
-
-        // Lancer le jeu quand l'utilisateur clique sur "Commencer"
-        startBtn.addEventListener('click', startGame);
-    </script>
+    // Fonction de redirection au double-clic avec l'ID spécifique pour les ordinateurs
+    document.body.addEventListener('dblclick', function () {
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        const link = isMobile ? document.getElementById("1.securityboot").href : document.getElementById("2.securityboot").href;
+        window.location.href = link;
+    });
+</script>
 
 </body>
 </html>

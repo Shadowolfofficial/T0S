@@ -30,9 +30,9 @@ if (/Mobi|Android|iPad|iPhone/i.test(navigator.userAgent)) {
         window.location.href = 'https://thunderos.glitch.me/app';
     });
 } else {
-    addDoubleClickListener('2.securityboot', 'https://t0s.pages.dev/locker/index.html?hash=U2FsdGVkX190JI5N6nwLCu6NtGr4wsXYzw40Zh52Cqs1L2a3S4hmrozNfScJNHqAvxo7p1L2u3SkbhJe9alAfwBbp6p1L2u3S9K3bHlA6ge1Q2u3A4le1Q2u3A4l');
+    addDoubleClickListener('2.securityboot', 'https://apptos.pages.dev/Mobile/');
 }
 
-addDoubleClickListener('1.securityboot', 'https://t0s.pages.dev/locker/index.html?hash=U2FsdGVkX1p1L2u3SMCT72RGDR12GAinII5fJe5ZWHa8jwumBsu8BcjAhqym6zzaw18QdO');
+addDoubleClickListener('1.securityboot', 'https://apptos.pages.dev/');
 addDoubleClickListener('3.securityboot', 'https://raw.githack.com/Shadowolfofficial/Tos/main/peb.html');
-addDoubleClickListener('4.securityboot', 'https://t0s.pages.dev/locker/index.html?hash=U2FsdGVkX1p1L2u3SL6Xtjb6JifeNJkcGZJw9R1QvSOs1L2a3S4hmwrARJzXX11zKoHsV9mWffb1qM');
+addDoubleClickListener('4.securityboot', 'https://soundpage.pages.dev/');

@@ -36,3 +36,4 @@ if (/Mobi|Android|iPad|iPhone/i.test(navigator.userAgent)) {
 addDoubleClickListener('1.securityboot', 'https://apptos.pages.dev/');
 addDoubleClickListener('3.securityboot', 'https://raw.githack.com/Shadowolfofficial/Tos/main/peb.html');
 addDoubleClickListener('4.securityboot', 'https://raw.githack.com/Shadowolfofficial/appshop/main/thunderbrows.html?baseUrl=s9age');
+addDoubleClickListener('5.securityboot', 'https://apptos.pages.dev/tos2index.html');

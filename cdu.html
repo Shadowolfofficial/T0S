@@ -2,53 +2,133 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conditions d'utilisation de ThunderOs</title>
     <style>
+        /* Styles globaux */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
         }
+
+        /* Conteneur principal */
         .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
+            width: 90%;
+            max-width: 800px;
+            margin: 40px auto;
             background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-top: 20px;
-            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
         }
+
+        /* En-tête */
         header {
-            background: #50c878;
-            padding: 20px;
-            border-radius: 10px 10px 0 0;
+            background: linear-gradient(135deg, #50c878, #3aa35f);
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
         }
+
         header h1 {
             margin: 0;
-            color: white;
-            text-align: center;
+            font-size: 2.5em;
+            font-weight: 700;
+            letter-spacing: -1px;
         }
+
+        /* Sections */
         section {
-            padding: 20px 0;
-            border-bottom: 1px solid #ddd;
+            padding: 25px 30px;
+            border-bottom: 1px solid #eaeaea;
+            transition: background-color 0.3s ease;
         }
+
+        section:hover {
+            background-color: #fafafa;
+        }
+
         section:last-child {
             border-bottom: none;
         }
+
         section h2 {
-            color: #333;
-            font-size: 1.2em;
+            color: #2c3e50;
+            font-size: 1.5em;
             margin-top: 0;
+            margin-bottom: 15px;
+            font-weight: 600;
         }
+
+        section p {
+            margin: 0;
+            font-size: 1em;
+            color: #555;
+        }
+
+        /* Pied de page */
         footer {
-            background: #50c878;
+            background: linear-gradient(135deg, #50c878, #3aa35f);
             padding: 20px;
-            border-radius: 0 0 10px 10px;
             text-align: center;
             color: white;
+            font-size: 0.9em;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Effets et animations */
+        .container {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                margin: 20px auto;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            section {
+                padding: 20px;
+            }
+
+            section h2 {
+                font-size: 1.3em;
+            }
+
+            section p {
+                font-size: 0.95em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            section h2 {
+                font-size: 1.2em;
+            }
+
+            section p {
+                font-size: 0.9em;
+            }
         }
     </style>
 </head>

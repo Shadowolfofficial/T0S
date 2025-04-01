@@ -26,11 +26,11 @@ function addDoubleClickListener(elementId, url) {
 
 // Vérification si le dispositif est mobile ou non, et ajout des événements de double-clic
 if (/Mobi|Android|iPad|iPhone/i.test(navigator.userAgent)) {
-    document.getElementById('2.securityboot').addEventListener('dblclick', function() {
+    document.getElementById('1.securityboot').addEventListener('dblclick', function() {
         window.location.href = 'https://thunderos.glitch.me/app';
     });
 } else {
-    addDoubleClickListener('2.securityboot', 'https://apptos.pages.dev/');
+    addDoubleClickListener('1.securityboot', 'https://apptos.pages.dev/');
 }
 
 addDoubleClickListener('1.securityboot', 'https://apptos.pages.dev/');

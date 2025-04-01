@@ -41,6 +41,188 @@
     <title>ThunderOs</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+    <style>
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(200, 50, 50, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(200, 50, 50, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(200, 50, 50, 0); }
+        }
+        
+        /* Overlay */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(3px);
+        }
+        
+        /* Popup */
+        .popup-container {
+            background-color: #1a1a2e;
+            color: #ffffff;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            padding: 30px;
+            position: relative;
+            border: 1px solid #2d2d42;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #2d2d42;
+        }
+        
+        .popup-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #e94560;
+            margin: 0;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            color: #a0a0a0;
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-btn:hover {
+            color: #ffffff;
+        }
+        
+        .popup-content {
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        
+        .important-tag {
+            display: inline-block;
+            background-color: #e94560;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            animation: pulse 2s infinite;
+        }
+        
+        .popup-footer {
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+        .understand-btn {
+            background-color: #2d2d42;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+        
+        .understand-btn:hover {
+            background-color: #e94560;
+        }
+    </style>
+</head>
+<body>
+    <!-- Popup HTML -->
+    <div class="popup-overlay" id="thunderosPopup">
+        <div class="popup-container">
+            <div class="popup-header">
+                <h2 class="popup-title">Avis Important</h2>
+                <button class="close-btn" id="closePopup">&times;</button>
+            </div>
+            <div class="important-tag">URGENT</div>
+            <div class="popup-content">
+                <p>Je tiens à vous informer d'un changement important concernant ThunderOs.</p>
+                <p><strong>Je ne fermerai pas immédiatement les services</strong>, mais :</p>
+                <ul>
+                    <li>Les mises à jour seront plus rares</li>
+                    <li>Les services seront limité</li>
+                    <li>Le projet pourrait être abandonné ou remplacé</li>
+                </ul>
+                <p>J'ai besoin de temps pour réfléchir au futur de ThunderOs et d'autre chose. Je vous remercie pour votre compréhension et votre soutien.</p>
+            </div>
+            <div class="popup-footer">
+                <button class="understand-btn" id="understandBtn">J'ai compris</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fermer le popup
+        document.getElementById('closePopup').addEventListener('click', function() {
+            document.getElementById('thunderosPopup').style.display = 'none';
+            // Stocker en cookie/localStorage que l'utilisateur a vu le popup
+            localStorage.setItem('thunderosPopupSeen', 'true');
+        });
+        
+        document.getElementById('understandBtn').addEventListener('click', function() {
+            document.getElementById('thunderosPopup').style.display = 'none';
+            localStorage.setItem('thunderosPopupSeen', 'true');
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    
 <body>
     <div class="container content">
         <h1>ThunderOs</h1>

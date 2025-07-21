@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maintenance ThunderOs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto:wght@400&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', Arial, sans-serif;
+      background: linear-gradient(135deg, #21253a 0%, #2b6cb0 100%);
+      color: #fff;
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .container {
+      background: rgba(30, 34, 54, 0.93);
+      padding: 50px 40px;
+      border-radius: 18px;
+      box-shadow: 0 8px 40px 0 rgba(23, 26, 34, 0.3);
+      text-align: center;
+      position: relative;
+    }
+
+    .logo {
+      font-size: 2.7rem;
+      letter-spacing: 2px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      margin-bottom: 16px;
+      font-weight: 600;
+      color: #52a7ea;
+      animation: glow 1.5s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 0px #60caf3;}
+      to { text-shadow: 0 0 16px #60caf3;}
+    }
+
+    .spinner {
+      margin: 30px auto 30px auto;
+      width: 70px;
+      height: 70px;
+      border: 7px solid #465587;
+      border-top: 7px solid #49a6e9;
+      border-radius: 50%;
+      animation: spin 1.2s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
+    }
+
+    h1 {
+      font-size: 2.1rem;
+      margin-bottom: 12px;
+      color: #fff;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    p {
+      color: #d3d3d3;
+      font-size: 1.1rem;
+      margin-bottom: 0;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 30px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">ThunderOs</div>
+    <div class="spinner" aria-hidden="true"></div>
+    <h1>Maintenance en cours</h1>
+    <p>
+      Tous les services <strong>ThunderOs</strong> sont actuellement <span style="color:#f14d4d;font-weight:bold">indisponibles</span>.<br>
+      Je travaillent activement à la résolution du problème.<br>
+      Les services seront restaurés très prochainement.<br><br>
+      Merci de votre compréhension.
+    </p>
+  </div>
+</body>
+</html>

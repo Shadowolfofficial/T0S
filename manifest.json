@@ -1,0 +1,12 @@
+{
+  "name": "ThunderOs",
+  "short_name": "ThunderOs",
+  "start_url": "/?homescreen=true",
+  "display": "standalone",
+  "background_color": "#1a1a2e",
+  "theme_color": "#23233a",
+  "icons": [
+    { "src": "/logo.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/logo.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

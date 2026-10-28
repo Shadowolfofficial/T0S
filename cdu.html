@@ -1,193 +1,561 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conditions d'utilisation de ThunderOs</title>
-    <style>
-        /* Styles globaux */
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0c10">
+<title>Conditions d'utilisation — ThunderOS</title>
 
-        /* Conteneur principal */
-        .container {
-            width: 90%;
-            max-width: 800px;
-            margin: 40px auto;
-            background-color: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-        /* En-tête */
-        header {
-            background: linear-gradient(135deg, #50c878, #3aa35f);
-            padding: 30px 20px;
-            text-align: center;
-            color: white;
-        }
+:root {
+  --bg: #0b0c10;
+  --surface: #16171c;
+  --surface-hover: #1c1d23;
+  --border: #2b2d35;
+  --yellow: #ffcd38;
+  --text: #f5f5f7;
+  --muted: #a0a2ae;
+}
 
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-            font-weight: 700;
-            letter-spacing: -1px;
-        }
+* { box-sizing: border-box; }
 
-        /* Sections */
-        section {
-            padding: 25px 30px;
-            border-bottom: 1px solid #eaeaea;
-            transition: background-color 0.3s ease;
-        }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 30px;
+}
 
-        section:hover {
-            background-color: #fafafa;
-        }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, sans-serif;
+  line-height: 1.7;
+}
 
-        section:last-child {
-            border-bottom: none;
-        }
+body::before {
+  content: "";
+  position: absolute;
+  top: -350px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(
+    circle, #ffcd381a, transparent 70%
+  );
+  pointer-events: none;
+}
 
-        section h2 {
-            color: #2c3e50;
-            font-size: 1.5em;
-            margin-top: 0;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
+a { color: inherit; }
 
-        section p {
-            margin: 0;
-            font-size: 1em;
-            color: #555;
-        }
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 4px;
+}
 
-        /* Pied de page */
-        footer {
-            background: linear-gradient(135deg, #50c878, #3aa35f);
-            padding: 20px;
-            text-align: center;
-            color: white;
-            font-size: 0.9em;
-        }
+.container {
+  max-width: 950px;
+  padding: 30px 22px 60px;
+  margin: auto;
+  position: relative;
+}
 
-        footer p {
-            margin: 0;
-        }
+/* Navigation */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 65px;
+}
 
-        /* Effets et animations */
-        .container {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 19px;
+  font-weight: 800;
+  text-decoration: none;
+  letter-spacing: -.7px;
+}
 
-        .container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
+.brand img {
+  width: 38px;
+  height: 38px;
+  object-fit: cover;
+  border-radius: 10px;
+}
 
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .container {
-                width: 95%;
-                margin: 20px auto;
-            }
+.brand span { color: var(--yellow); }
 
-            header h1 {
-                font-size: 2em;
-            }
+.back {
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: #1b1c22;
+  padding: 10px 15px;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: .2s;
+}
 
-            section {
-                padding: 20px;
-            }
+.back:hover {
+  border-color: var(--yellow);
+  background: #26231b;
+}
 
-            section h2 {
-                font-size: 1.3em;
-            }
+/* Introduction */
+.hero {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 45px;
+  animation: appear .6s ease both;
+}
 
-            section p {
-                font-size: 0.95em;
-            }
-        }
+.eyebrow {
+  display: inline-block;
+  padding: 7px 14px;
+  border-radius: 50px;
+  background: #ffcd3812;
+  border: 1px solid #ffcd3836;
+  color: var(--yellow);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+}
 
-        @media (max-width: 480px) {
-            header h1 {
-                font-size: 1.8em;
-            }
+h1 {
+  font-size: clamp(31px, 6vw, 49px);
+  letter-spacing: -2px;
+  line-height: 1.15;
+  margin: 23px 0 18px;
+  font-weight: 800;
+}
 
-            section h2 {
-                font-size: 1.2em;
-            }
+h1 span { color: var(--yellow); }
 
-            section p {
-                font-size: 0.9em;
-            }
-        }
-    </style>
+.hero p {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Sommaire */
+.summary {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 25px;
+  margin-bottom: 25px;
+}
+
+.summary h2 {
+  margin: 0 0 18px;
+  font-size: 17px;
+  letter-spacing: -.4px;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.summary a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  text-decoration: none;
+  color: #c0c1ca;
+  font-size: 12px;
+  transition: .2s;
+}
+
+.summary a:hover {
+  background: #ffffff08;
+  border-color: #ffffff12;
+  color: var(--yellow);
+}
+
+.summary .number {
+  color: var(--yellow);
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* Conditions */
+.terms {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 19px;
+  overflow: hidden;
+}
+
+.term {
+  padding: 29px 32px;
+  border-bottom: 1px solid var(--border);
+  transition: background .2s;
+}
+
+.term:last-child { border-bottom: 0; }
+
+.term:hover { background: var(--surface-hover); }
+
+.term:target {
+  background: #ffcd3809;
+  box-shadow: inset 3px 0 var(--yellow);
+}
+
+.term-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 13px;
+}
+
+.term-number {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 35px;
+  height: 35px;
+  border-radius: 10px;
+  background: #ffcd3812;
+  color: var(--yellow);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.term h2 {
+  font-size: 17px;
+  letter-spacing: -.4px;
+  margin: 4px 0 0;
+  line-height: 1.45;
+}
+
+.term p {
+  margin: 0 0 0 50px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 45px 15px 10px;
+}
+
+.footer p {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0 0 23px;
+}
+
+.footer a {
+  display: inline-block;
+  padding: 13px 22px;
+  border-radius: 11px;
+  background: var(--yellow);
+  color: #171717;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 800;
+  transition: .2s;
+}
+
+.footer a:hover {
+  background: #ffdd73;
+  transform: translateY(-2px);
+}
+
+.copyright {
+  margin-top: 35px;
+  font-size: 11px;
+  color: #696b77;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .container { padding: 20px 14px 40px; }
+  .nav { margin-bottom: 48px; }
+  .summary { padding: 20px 15px; }
+  .summary-grid { grid-template-columns: 1fr; }
+  .term { padding: 23px 19px; }
+  .term h2 { font-size: 15px; }
+  .term p { margin-left: 0; font-size: 12px; }
+  .hero { margin-bottom: 35px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+</style>
 </head>
+
 <body>
-    <div class="container">
-        <header>
-            <h1>Conditions d’utilisation</h1>
-        </header>
-        <section>
-            <h2>Acceptation des conditions d'utilisation</h2>
-            <p>En utilisant le site ThunderOs, vous confirmez avoir lu, compris et accepté pleinement et sans réserve les présentes conditions d'utilisation. Si vous n'êtes pas d'accord avec ces conditions, veuillez cesser votre utilisation de ce site.</p>
-        </section>
-        <section>
-            <h2>Utilisation autorisée</h2>
-            <p>ThunderOs est conçu pour un usage personnel uniquement. Vous vous engagez à utiliser ce site conformément aux lois et réglementations applicables, pour des fins légales et non commerciales. Toute utilisation commerciale, illégale ou abusive de ThunderOs est expressément interdite.</p>
-        </section>
-        <section>
-            <h2>Compte utilisateur</h2>
-            <p>Vous êtes entièrement responsable de la sécurité de vos informations. Toutes les activités effectuées sur ThunderOs.</p>
-        </section>
-        <section>
-            <h2>Contenu généré par les utilisateurs</h2>
-            <p>Lorsque vous soumettez du contenu sur ThunderOs, vous conservez les droits d'auteur de ce contenu. Cependant, vous donnez à ThunderOs une licence non exclusive, mondiale, perpétuelle, gratuite de droits, pour utiliser, reproduire, modifier, adapter, publier, traduire et distribuer votre contenu dans le cadre de l'exploitation de ThunderOs.</p>
-        </section>
-        <section>
-            <h2>Propriété intellectuelle</h2>
-            <p>Tous les éléments présentés sur ThunderOs, les textes, les images, les graphiques, les logos et les vidéos, sont principalement fournis par Pixabay.</p>
-        </section>
-        <section>
-            <h2>Responsabilité de l'utilisateur</h2>
-            <p>Vous êtes seul responsable de toute activité effectuée sous ThunderOs. Vous vous engagez à ne pas utiliser ThunderOs pour transmettre des virus, du spam, des logiciels malveillants ou toute autre forme de contenu nuisible. Vous acceptez également de respecter les règles de conduite et de ne pas perturber le bon fonctionnement de ThunderOs.</p>
-        </section>
-        <section>
-            <h2>Liens externes</h2>
-            <p>ThunderOs peut contenir des liens vers des sites externes, notamment des sites publicitaires. Nous déclinons toute responsabilité quant au contenu ou à la disponibilité de ces sites tiers et ne les recommandons pas ou ne les approuvons pas. L'utilisation de ces liens externes se fait à vos propres risques.</p>
-        </section>
-        <section>
-            <h2>Modifications des conditions d'utilisation</h2>
-            <p>ThunderOs se réserve le droit de modifier, mettre à jour ou supprimer ces conditions d'utilisation à tout moment, sans préavis. Il est de votre responsabilité de consulter régulièrement cette page pour prendre connaissance des éventuelles modifications.</p>
-        </section>
-        <section>
-            <h2>Limitation de responsabilité</h2>
-            <p>Dans les limites autorisées par la loi, ThunderOs décline toute responsabilité en ce qui concerne les dommages directs, indirects, consécutifs ou spéciaux découlant de votre utilisation ou de votre incapacité à utiliser ce site.</p>
-        </section>
-        <section>
-            <h2>Résiliation</h2>
-            <p>ThunderOs se réserve le droit de résilier ou de suspendre votre accès à tout moment, pour quelque raison que ce soit, sans préavis.</p>
-        </section>
-        <section>
-            <h2>Publicités et données personnelles</h2>
-            <p>Les publicités présentes sur le site peuvent servir à analyser le comportement des utilisateurs et à collecter des données personnelles dans le but d'améliorer l'expérience utilisateur et d'adapter les publicités en fonction de leurs intérêts. En utilisant ce site, vous acceptez également la collecte et le traitement de vos données personnelles dans ce cadre.</p>
-        </section>
-        <section>
-            <h2>Scripts sur le site</h2>
-            <p>Le site ThunderOs peut contenir des scripts pour améliorer l'interaction utilisateur et la performance du site. Ces scripts sont conçus pour être sûrs et ne doivent pas poser de problèmes de sécurité. Toutefois, ils sont exécutés côté client, ce qui signifie que leur comportement dépend de votre navigateur et de sa configuration. Nous vous recommandons de garder votre navigateur à jour et d'activer les paramètres de sécurité pour minimiser les risques.</p>
-        </section>
-        <footer>
-            <p>Merci de votre compréhension et de votre adhésion à ces conditions d'utilisation.</p>
-        </footer>
+<div class="container">
+
+  <nav class="nav" aria-label="Navigation principale">
+    <a href="index.html" class="brand">
+      <img src="logo.png" alt="">
+      <div>Thunder<span>Os</span></div>
+    </a>
+    <a href="index.html" class="back">← Retour à l'accueil</a>
+  </nav>
+
+  <header class="hero">
+    <div class="eyebrow">Informations légales</div>
+    <h1>Conditions <span>d'utilisation</span></h1>
+    <p>
+      Retrouvez les règles et informations essentielles
+      concernant l'utilisation de ThunderOS.
+    </p>
+  </header>
+
+  <main>
+    <nav class="summary" aria-label="Sommaire">
+      <h2>Sommaire</h2>
+      <div class="summary-grid" id="summaryGrid"></div>
+    </nav>
+
+    <article class="terms">
+
+      <section class="term" id="article-1">
+        <div class="term-heading">
+          <span class="term-number">01</span>
+          <h2>Acceptation des conditions d'utilisation</h2>
+        </div>
+        <p>
+          En utilisant ThunderOS, vous reconnaissez avoir pris
+          connaissance des présentes conditions d'utilisation.
+          Si vous n'acceptez pas ces conditions, nous vous
+          invitons à ne pas utiliser le service.
+        </p>
+      </section>
+
+      <section class="term" id="article-2">
+        <div class="term-heading">
+          <span class="term-number">02</span>
+          <h2>Utilisation autorisée</h2>
+        </div>
+        <p>
+          ThunderOS est conçu pour un usage personnel.
+          Vous vous engagez à utiliser ce service conformément
+          aux lois et réglementations applicables.
+          Toute utilisation commerciale non autorisée,
+          illégale ou abusive est interdite.
+        </p>
+      </section>
+
+      <section class="term" id="article-3">
+        <div class="term-heading">
+          <span class="term-number">03</span>
+          <h2>Compte utilisateur</h2>
+        </div>
+        <p>
+          Vous êtes responsable de la confidentialité de
+          vos identifiants et de la sécurité de votre compte,
+          lorsque cette fonctionnalité est disponible.
+          Nous vous recommandons de protéger vos informations
+          et de ne pas les communiquer à des tiers.
+        </p>
+      </section>
+
+      <section class="term" id="article-4">
+        <div class="term-heading">
+          <span class="term-number">04</span>
+          <h2>Contenu généré par les utilisateurs</h2>
+        </div>
+        <p>
+          Lorsque vous soumettez du contenu sur ThunderOS,
+          vous conservez les droits que vous détenez sur
+          celui-ci. Vous accordez à ThunderOS une licence
+          non exclusive et gratuite permettant d'utiliser,
+          reproduire, adapter et afficher ce contenu dans
+          la mesure nécessaire au fonctionnement du service.
+        </p>
+      </section>
+
+      <section class="term" id="article-5">
+        <div class="term-heading">
+          <span class="term-number">05</span>
+          <h2>Propriété intellectuelle</h2>
+        </div>
+        <p>
+          Les éléments présentés sur ThunderOS, notamment
+          les textes, images, graphiques, logos et vidéos,
+          peuvent provenir de différentes sources,
+          dont Pixabay. Chaque élément reste soumis
+          aux droits et licences qui lui sont applicables.
+        </p>
+      </section>
+
+      <section class="term" id="article-6">
+        <div class="term-heading">
+          <span class="term-number">06</span>
+          <h2>Responsabilité de l'utilisateur</h2>
+        </div>
+        <p>
+          Vous êtes responsable de votre utilisation de
+          ThunderOS. Il est interdit d'utiliser le service
+          pour diffuser des virus, logiciels malveillants,
+          messages indésirables ou contenus nuisibles.
+          Vous vous engagez également à ne pas perturber
+          son bon fonctionnement.
+        </p>
+      </section>
+
+      <section class="term" id="article-7">
+        <div class="term-heading">
+          <span class="term-number">07</span>
+          <h2>Liens externes</h2>
+        </div>
+        <p>
+          ThunderOS peut contenir des liens vers des sites
+          tiers, notamment des sites publicitaires.
+          Ces sites disposent de leurs propres contenus,
+          politiques et conditions. ThunderOS ne contrôle
+          pas nécessairement leur disponibilité ni
+          leur fonctionnement.
+        </p>
+      </section>
+
+      <section class="term" id="article-8">
+        <div class="term-heading">
+          <span class="term-number">08</span>
+          <h2>Modification des conditions</h2>
+        </div>
+        <p>
+          ThunderOS peut modifier les présentes conditions
+          afin de tenir compte de l'évolution du service,
+          des exigences techniques ou des obligations
+          légales. Les modifications seront publiées
+          sur cette page.
+        </p>
+      </section>
+
+      <section class="term" id="article-9">
+        <div class="term-heading">
+          <span class="term-number">09</span>
+          <h2>Limitation de responsabilité</h2>
+        </div>
+        <p>
+          ThunderOS s'efforce de maintenir le service
+          accessible et fonctionnel. Toutefois, des erreurs,
+          interruptions ou dysfonctionnements peuvent
+          survenir. Sa responsabilité est limitée dans
+          les conditions autorisées par la législation
+          applicable, sans exclure les droits impératifs
+          des utilisateurs.
+        </p>
+      </section>
+
+      <section class="term" id="article-10">
+        <div class="term-heading">
+          <span class="term-number">10</span>
+          <h2>Suspension et résiliation</h2>
+        </div>
+        <p>
+          ThunderOS peut suspendre ou limiter l'accès
+          au service en cas de non-respect des présentes
+          conditions, d'abus ou de nécessité technique,
+          dans le respect de la réglementation applicable.
+        </p>
+      </section>
+
+      <section class="term" id="article-11">
+        <div class="term-heading">
+          <span class="term-number">11</span>
+          <h2>Publicités et données personnelles</h2>
+        </div>
+        <p>
+          ThunderOS peut afficher des publicités fournies
+          par des partenaires externes. Certains partenaires
+          peuvent utiliser des cookies ou d'autres
+          technologies pour mesurer l'audience ou
+          personnaliser les annonces.
+          Lorsque la réglementation l'exige,
+          votre consentement doit être recueilli avant
+          l'utilisation de ces technologies.
+          Des informations complémentaires doivent être
+          fournies dans une politique de confidentialité.
+        </p>
+      </section>
+
+      <section class="term" id="article-12">
+        <div class="term-heading">
+          <span class="term-number">12</span>
+          <h2>Scripts et sécurité</h2>
+        </div>
+        <p>
+          ThunderOS utilise des scripts afin d'assurer
+          le fonctionnement de certaines fonctionnalités.
+          Des scripts tiers peuvent également être chargés.
+          Leur fonctionnement dépend notamment de votre
+          navigateur et de sa configuration.
+          Nous recommandons d'utiliser un navigateur à jour
+          et de conserver ses protections de sécurité actives.
+        </p>
+      </section>
+
+    </article>
+  </main>
+
+  <footer class="footer">
+    <p>
+      Merci d'avoir pris connaissance des conditions
+      d'utilisation de ThunderOS.
+    </p>
+    <a href="index.html">← Retour à ThunderOS</a>
+    <div class="copyright">
+      © 2026 ThunderOS · Tous droits réservés
     </div>
+  </footer>
+
+</div>
+
+<script>
+// Génération automatique du sommaire
+const grid = document.getElementById("summaryGrid");
+
+document.querySelectorAll(".term").forEach((section, i) => {
+  const heading = section.querySelector("h2");
+  const link = document.createElement("a");
+  const number = document.createElement("span");
+  const label = document.createElement("span");
+
+  link.href = "#" + section.id;
+  number.className = "number";
+  number.textContent = String(i + 1).padStart(2, "0");
+  label.textContent = heading.textContent;
+
+  link.append(number, label);
+  grid.appendChild(link);
+});
+</script>
 </body>
 </html>

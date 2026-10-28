@@ -11,6 +11,18 @@
 <meta name="description" content="ThunderOS, votre espace numérique.">
 <link rel="manifest" href="manifest.json">
 <title>ThunderOs</title>
+<script>
+  // Refuse immédiatement les accès sans paramètres valides.
+  (() => {
+    const p = new URLSearchParams(location.search);
+    const t = p.get('tok');
+    const raw = p.get('exp');
+    const expiration = Number(raw);
+    if (!t || !raw || !Number.isSafeInteger(expiration) || expiration <= Date.now()) {
+      location.replace('https://t0s.pages.dev/404/');
+    }
+  })();
+</script>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
@@ -359,15 +371,16 @@ footer {
 <script>
 "use strict";
 
-// Vérification du token reçu
-const params = new URLSearchParams(location.search);
+// Contrôle obligatoire : token présent et non expiré.
+// Attention : cette vérification côté client n'authentifie pas le token.
+const params = new URLSearchParams(window.location.search);
+const token = params.get("tok");
+const rawExp = params.get("exp");
+const exp = Number(rawExp);
+const invalidToken = !token || !rawExp || !Number.isSafeInteger(exp) || exp <= Date.now();
 
-if (params.has("tok") && params.has("exp")) {
-  const exp = Number(params.get("exp"));
-
-  if (!Number.isFinite(exp) || Date.now() > exp) {
-    location.replace("https://t0s.pages.dev/404/");
-  }
+if (invalidToken) {
+  window.location.replace("https://t0s.pages.dev/404/");
 }
 
 // Redirection en mode application installée

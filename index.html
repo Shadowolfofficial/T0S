@@ -1,357 +1,523 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <title>ThunderOs</title>
-  <meta name="04eeb17b910f036d04ea8b63cd15bfdf528e4fe1" content="04eeb17b910f036d04ea8b63cd15bfdf528e4fe1" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="referrer" content="no-referrer-when-downgrade" />
-  <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#232323" />
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
-    :root {
-      --jaune: #FFCD38;
-      --jaune-hover: #FFD866;
-      --fond: #232323;
-      --fond-opac: rgba(35,35,35,0.93);
-      --glass: rgba(255,205,56,0.10);
-      --txt: #fafafa;
-    }
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      font-family: 'Montserrat', Arial, sans-serif;
-      color: var(--txt);
-      background: var(--fond);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
-    .card {
-      background: var(--fond-opac);
-      border-radius: 22px;
-      box-shadow: 0 6px 36px #00000055, 0 0 0 1.5px var(--glass);
-      padding: 50px 34px 40px 34px;
-      min-width: 335px;
-      max-width: 97vw;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-      animation: card-entrance 0.8s cubic-bezier(.7,.02,.32,1.2) both;
-      text-align: center;
-    }
-    .logo {
-      width: 190px;
-      height: 190px;
-      border-radius: 22px;
-      margin-bottom: 13px;
-      animation: logo-pop 0.6s cubic-bezier(.7,-0.12,.38,1.19);
-      box-shadow: 0 4px 28px 0 var(--jaune);
-      background: none;
-      object-fit: cover;
-      display: block;
-    }
-    h1 {
-      font-size: 2.3rem;
-      margin-bottom: 7px;
-      color: var(--jaune);
-      letter-spacing: 0.7px;
-      font-weight: 700;
-    }
-    p.undertitle {
-      font-size: 1.03em;
-      letter-spacing: 0.23px;
-      color: #fbf7e399;
-      margin-bottom: 0px;
-    }
-    .btn-row {
-      display: flex;
-      gap: 22px;
-      margin: 15px 0 8px 0;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    button {
-      font-family: inherit;
-      font-weight: 700;
-      font-size: 1.12em;
-      padding: 15px 33px;
-      border-radius: 15px;
-      border: none;
-      cursor: pointer;
-      user-select: none;
-      transition: transform .20s, box-shadow .19s;
-      box-shadow: 0 2px 20px #ffce3860;
-      background: linear-gradient(90deg, var(--jaune), var(--jaune-hover) 95%);
-      color: #212121ee;
-      min-width: 220px;
-      margin-bottom: 10px;
-    }
-    button:hover {
-      background: linear-gradient(90deg, var(--jaune-hover), var(--jaune));
-      transform: translateY(-2.2px) scale(1.06);
-      box-shadow: 0 5px 28px #ffce3893;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0c10">
+<meta name="04eeb17b910f036d04ea8b63cd15bfdf528e4fe1"
+      content="04eeb17b910f036d04ea8b63cd15bfdf528e4fe1">
+<meta name="referrer" content="no-referrer-when-downgrade">
+<meta name="description" content="ThunderOS, votre espace numérique.">
+<link rel="manifest" href="manifest.json">
+<title>ThunderOS — Votre espace numérique</title>
 
-    /* Bouton secondaire style */
-    .btn-seco {
-      background: transparent;
-      color: var(--jaune);
-      border: 2px solid var(--jaune);
-      box-shadow: none;
-      transition: background .19s, color .17s, border .19s;
-    }
-    .btn-seco:hover {
-      background: var(--glass);
-      color: #232323;
-      border-color: var(--jaune-hover);
-    }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-    /* Message astuce */
-    #installHint {
-      margin-top: 12px;
-      font-size: 0.9em;
-      color: #ffdb7d;
-      min-height: 1.2em;
-      font-style: italic;
-    }
+:root {
+  --bg: #0b0c10;
+  --surface: #15161b;
+  --border: #303139;
+  --yellow: #ffcd38;
+  --text: #f7f7fa;
+  --muted: #92949e;
+}
 
-    @keyframes logo-pop {
-      0% {
-        opacity: 0;
-        transform: scale(.7) rotate(-12deg);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1) rotate(0);
-      }
-    }
-    @keyframes card-entrance {
-      0% {
-        opacity: 0;
-        transform: translateY(44px) scale(.96);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-    @media (max-width: 500px) {
-      .card {
-        padding: 22px 7px;
-      }
-      .logo {
-        width: 135px;
-        height: 135px;
-      }
-      h1 {
-        font-size: 1.33rem;
-      }
-    }
-  </style>
+* { box-sizing: border-box; }
+
+html { min-height: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Inter, system-ui, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  width: 650px;
+  height: 650px;
+  top: -480px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: #ffcd38;
+  box-shadow: 0 0 170px 90px #ffcd3818;
+  opacity: .5;
+  pointer-events: none;
+}
+
+.page {
+  width: 100%;
+  max-width: 660px;
+  padding: 55px 20px 30px;
+  text-align: center;
+  position: relative;
+  animation: enter .65s ease both;
+}
+
+.logo {
+  width: 112px;
+  height: 112px;
+  border-radius: 27px;
+  object-fit: cover;
+  box-shadow: 0 12px 50px #ffcd3824;
+  margin-bottom: 22px;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(35px, 7vw, 51px);
+  font-weight: 800;
+  letter-spacing: -2px;
+}
+
+h1 span { color: var(--yellow); }
+
+.tagline {
+  margin: 12px 0 35px;
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.card {
+  background: linear-gradient(155deg, #1c1d23, #121318);
+  border: 1px solid var(--border);
+  border-radius: 25px;
+  padding: 30px;
+  box-shadow: 0 20px 65px #0005;
+}
+
+.notice {
+  background: #ffcd3809;
+  border: 1px solid #ffcd3835;
+  border-radius: 13px;
+  padding: 15px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #c9c9cf;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.notice-icon {
+  color: var(--yellow);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.terms {
+  display: inline-block;
+  margin: 20px 0 25px;
+  color: var(--yellow);
+  font-size: 13px;
+  text-decoration: none;
+  transition: opacity .2s;
+}
+
+.terms:hover { opacity: .7; }
+
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border-radius: 13px;
+  min-height: 54px;
+  border: 1px solid #3a3b44;
+  background: #202127;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  transition: background .2s, transform .2s,
+              border-color .2s, box-shadow .2s;
+}
+
+button:hover {
+  background: #292a31;
+  border-color: #656671;
+  transform: translateY(-2px);
+}
+
+button:focus-visible, a:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 4px;
+}
+
+button:disabled {
+  opacity: .55;
+  cursor: not-allowed;
+}
+
+button:disabled:hover { transform: none; }
+
+.btn-main {
+  grid-column: 1 / -1;
+  min-height: 65px;
+  background: linear-gradient(120deg, #ffdc62, #ffbf23);
+  border: 0;
+  color: #171717;
+  font-size: 16px;
+  font-weight: 800;
+  box-shadow: 0 6px 24px #ffcd3822;
+}
+
+.btn-main:hover {
+  background: linear-gradient(120deg, #ffe68a, #ffd04c);
+  box-shadow: 0 10px 32px #ffcd3840;
+}
+
+.btn-icon {
+  margin-right: 9px;
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+.hint {
+  margin-top: 22px;
+  padding: 13px;
+  background: #ffffff06;
+  border: 1px solid #ffffff14;
+  border-radius: 12px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+#installHint {
+  margin-top: 15px;
+  font-size: 12px;
+  color: var(--yellow);
+  line-height: 1.7;
+}
+
+#installHint:empty { display: none; }
+
+.social-title {
+  margin-top: 34px;
+  color: #797b85;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 18px;
+}
+
+.socials a {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: #18191e;
+  transition: transform .2s, border-color .2s,
+              background .2s;
+}
+
+.socials a:hover {
+  transform: translateY(-4px);
+  border-color: var(--yellow);
+  background: #25231b;
+}
+
+.socials img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+footer {
+  margin-top: 30px;
+  color: #646671;
+  font-size: 11px;
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 500px) {
+  .page { padding: 35px 15px 25px; }
+  .card { padding: 20px 16px; }
+  .logo { width: 90px; height: 90px; }
+  .tagline { font-size: 11px; letter-spacing: 1px; }
+  .buttons { grid-template-columns: 1fr; }
+  .btn-main { grid-column: auto; }
+  button { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+</style>
 </head>
+
 <body>
 
-  <main class="card" role="main" aria-label="Page d'accueil ThunderOs">
-    <img
-      src="logo.png"
-      class="logo"
-      aria-hidden="true"
-    />
-    <h1>ThunderOs</h1>
-<p class="undertitle">En cas de bug, réinitialisez ThunderOs dans les paramètres.</p>
-<p class="undertitle" id="cduLink" style="cursor:pointer;">Condition d'utilisation</p>
-<script>
-  document.getElementById('cduLink').addEventListener('click', function() {
-    window.location.href = 'cdu.html';
-  });
-</script>
-    <div class="btn-row">
-      <button class="btn-main" id="1.securityboot" type="button">Accéder à ThunderOs</button>
-    </div>
-    <div class="btn-row">
-      <button class="btn-seco" id="3.securityboot" type="button">Propositions & Bugs</button>
-      <button class="btn-seco" id="installer" type="button">Installer ThunderOs</button>
+<main class="page">
+  <img class="logo" src="logo.png" alt="Logo ThunderOS">
+
+  <h1>Thunder<span>OS</span></h1>
+  <p class="tagline">Votre espace, sans limites</p>
+
+  <section class="card" aria-label="Accès ThunderOS">
+    <div class="notice">
+      <span class="notice-icon">ⓘ</span>
+      <span>
+        En cas de bug, réinitialisez ThunderOS
+        dans les paramètres.
+      </span>
     </div>
 
-    <div id="installHint" aria-live="polite"></div>
-  </main>  
-<!-- Place ce bloc à l'intérieur de ton container ou body, généralement en bas -->
-<div class="footer-social" role="contentinfo" aria-label="Liens réseaux sociaux">
-  <a href="https://www.tiktok.com/@thunder0s" target="_blank" rel="noopener" title="TikTok">
-    <img src="tiktok.png" loading="lazy" />
-  </a>
-  <a href="https://discord.com/invite/bN5qfCE2dV" target="_blank" rel="noopener" title="YouTube">
-    <img src="discord.png" loading="lazy" />
-  </a>
-  <a href="https://www.instagram.com/thunder0s.dev/" target="_blank" rel="noopener" title="Instagram">
-    <img src="instagram.png" loading="lazy" />
-  </a>
-</div>
+    <a class="terms" href="cdu.html">
+      Conditions d'utilisation ↗
+    </a>
+
+    <div class="buttons">
+      <button class="btn-main" id="1.securityboot">
+        <span class="btn-icon">⚡</span>
+        Accéder à ThunderOS
+      </button>
+
+      <button id="3.securityboot">
+        <span class="btn-icon">☏</span>
+        Propositions & Bugs
+      </button>
+
+      <button id="installer">
+        <span class="btn-icon">↓</span>
+        Installer ThunderOS
+      </button>
+    </div>
+
+    <div class="hint">
+      Double-cliquez sur un bouton pour ouvrir
+      le lien correspondant.
+    </div>
+
+    <div id="installHint" role="status"
+         aria-live="polite"></div>
+  </section>
+
+  <div class="social-title">SUIVEZ THUNDEROS</div>
+
+  <nav class="socials" aria-label="Réseaux sociaux">
+    <a href="https://www.tiktok.com/@thunder0s"
+       target="_blank" rel="noopener noreferrer"
+       aria-label="TikTok">
+      <img src="tiktok.png" alt="">
+    </a>
+
+    <a href="https://discord.com/invite/bN5qfCE2dV"
+       target="_blank" rel="noopener noreferrer"
+       aria-label="Discord">
+      <img src="discord.png" alt="">
+    </a>
+
+    <a href="https://www.instagram.com/thunder0s.dev/"
+       target="_blank" rel="noopener noreferrer"
+       aria-label="Instagram">
+      <img src="instagram.png" alt="">
+    </a>
+  </nav>
+
+  <footer>© 2026 ThunderOS · Tous droits réservés</footer>
+</main>
 
 <script>
-(function(nh){
-var d = document,
-    s = d.createElement('script'),
-    l = d.scripts[d.scripts.length - 1];
-s.settings = nh || {};
-s.src = "\/\/handsome-storm.com\/bVX.V\/shdMGml\/0\/YJWycG\/ieIm\/9rulZlU\/lgklPYTdY\/2UMFz\/EA4LMMzpkFtONojzYizcMjTDgO0_MYAO";
-s.async = true;
-s.referrerPolicy = 'no-referrer-when-downgrade';
-l.parentNode.insertBefore(s, l);
-})({})
-</script>
+"use strict";
 
-  <script>
-(function(yajl){
-var d = document,
-    s = d.createElement('script'),
-    l = d.scripts[d.scripts.length - 1];
-s.settings = yajl || {};
-s.src = "\/\/handsome-storm.com\/bSXeV.s\/d-G\/lw0\/Y\/WXck\/Je\/mk9duKZlUylWkUP\/TiYF2jMYz\/Eu4KM\/DnMltoN_jFYdzrMHTigQwDNBAj";
-s.async = true;
-s.referrerPolicy = 'no-referrer-when-downgrade';
-l.parentNode.insertBefore(s, l);
-})({})
-</script>
-  
+// Vérification du token reçu
+const params = new URLSearchParams(location.search);
+
+if (params.has("tok") && params.has("exp")) {
+  const exp = Number(params.get("exp"));
+
+  if (!Number.isFinite(exp) || Date.now() > exp) {
+    location.replace("https://t0s.pages.dev/404/");
+  }
+}
+
+// Redirection en mode application installée
+const standalone = window.matchMedia(
+  "(display-mode: standalone)"
+).matches || navigator.standalone === true;
+
+if (standalone) {
+  location.replace("https://t0s.pages.dev/addappnow");
+}
+
+// Génération des paramètres de navigation
+function createTokenUrl(url) {
+  const exp = Date.now() + 60000;
+  const random = new Uint32Array(1);
+  crypto.getRandomValues(random);
+
+  const token = btoa(`${exp}-${random[0]}`);
+  const target = new URL(url);
+
+  target.searchParams.set("tok", token);
+  target.searchParams.set("exp", exp);
+
+  return target.href;
+}
+
+// Ouverture dans about:blank avec iframe
+function openThunder(url) {
+  const targetUrl = createTokenUrl(url);
+
+  const tab = window.open("about:blank", "_blank");
+
+  if (!tab) {
+    // Alternative si les pop-ups sont bloquées
+    location.href = targetUrl;
+    return;
+  }
+
+  try {
+    tab.document.open();
+    tab.document.write(`<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width,initial-scale=1">
+<title>ThunderOS</title>
 <style>
-  .footer-social {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    align-items: center;
-    margin-top: 34px;
-    padding: 12px 0;
-  }
-  .footer-social a {
-    display: inline-block;
-    transition: transform 0.25s ease, filter 0.25s ease;
-  }
-  .footer-social img {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    opacity: 0.9;
-    filter: drop-shadow(0 0 2px #00000088);
-    user-select: none;
-    pointer-events: auto;
-    transition: opacity 0.2s ease, transform 0.15s ease;
-  }
-  .footer-social a:hover img,
-  .footer-social a:focus img {
-    opacity: 1;
-    transform: scale(1.1) rotate(-7deg);
-    filter: drop-shadow(0 0 8px #FFCD38);
-    outline: none;
-  }
-  @media (max-width: 420px) {
-    .footer-social img {
-      width: 30px;
-      height: 30px;
-    }
-  }
+html,body {
+  margin:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#0b0c10;
+}
+iframe {
+  display:block;
+  width:100%;
+  height:100%;
+  border:0;
+}
 </style>
-<script>
-  // --- INSTALL PWA ---
+</head>
+<body>
+<iframe id="thunderFrame"
+        title="ThunderOS"
+        allowfullscreen></iframe>
+</body>
+</html>`);
+    tab.document.close();
 
-  let deferredPrompt;
-  const installBtn = document.getElementById('installer');
-  const installHint = document.getElementById('installHint');
+    tab.document.getElementById("thunderFrame").src =
+      targetUrl;
+  } catch (error) {
+    tab.location.href = targetUrl;
+  }
+}
 
-  // Le bouton est toujours affiché (style CSS gère), on gère l’état du prompt
+function setupLaunch(id, url) {
+  const button = document.getElementById(id);
+  if (!button) return;
 
-  // Quand navigateur annonce qu'on peut installer
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    installHint.textContent = "";
+  button.addEventListener("dblclick", () => {
+    openThunder(url);
   });
 
-  installBtn.addEventListener('dblclick', async () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      const choiceResult = await deferredPrompt.userChoice;
-      if (choiceResult.outcome === 'accepted') {
-        installHint.textContent = "✅ Application installée ! Merci 😄";
-        installBtn.disabled = true;
-        installBtn.textContent = "✅ Installé !";
-      } else {
-        installHint.textContent = "❌ Installation annulée par l'utilisateur.";
-      }
-      deferredPrompt = null;
-    } else {
-      // Pas de prompt possible : on affiche l'astuce manuelle adaptée
-      let usrAgent = navigator.userAgent || "";
-      let isIOS = /iphone|ipad|ipod/i.test(usrAgent);
-      let isSafari = /safari/i.test(usrAgent) && !/chrome/i.test(usrAgent);
-      if (isIOS && isSafari) {
-        installHint.textContent = "📌 Astuce iOS : appuyez sur l'icône « Partager » en bas et choisissez « Sur l’écran d’accueil ».";
-      } else {
-        installHint.textContent = "📌 Astuce : ouvrez le menu de votre navigateur, puis sélectionnez « Ajouter à l'écran d'accueil ».";
-      }
+  // Accessibilité clavier
+  button.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      openThunder(url);
     }
   });
+}
 
-  // --- about:blank bank sur tes boutons (double-clic) ---
+setupLaunch(
+  "1.securityboot",
+  "https://apptos.pages.dev/"
+);
 
-  function addDoubleClickListener(elementId, url, redirectUrl) {
-    let element = document.getElementById(elementId);
-    if (element) {
-      element.addEventListener('dblclick', function(e) {
-        if (e.ctrlKey) return;
-        if (redirectUrl && /Mobi|Android/i.test(navigator.userAgent) && !window.matchMedia('(display-mode: standalone)').matches) {
-          window.location.href = redirectUrl;
-          return;
-        }
-        let exp = Date.now() + 60000;
-        let token = btoa(exp + '-' + Math.floor(Math.random() * 1e7));
-        let sep = url.includes('?') ? '&' : '?';
-        let securedUrl = url + sep + 'tok=' + encodeURIComponent(token) + '&exp=' + exp;
-        let newTab = window.open('about:blank', '_blank');
-        newTab.document.write(
-          '<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"></head>' +
-          '<body style="margin:0;padding:0;overflow:hidden;">' +
-          '<iframe frameborder="0" ' +
-          'style="position:fixed;top:0;left:0;bottom:0;right:0;width:100vw;height:100vh;border:none;display:block;" ' +
-          'src="' + securedUrl + '" allowfullscreen></iframe></body></html>'
-        );
-      });
+setupLaunch(
+  "3.securityboot",
+  "https://raw.githack.com/Shadowolfofficial/Tos/main/peb.html"
+);
+
+// Installation PWA
+let deferredPrompt = null;
+
+const installBtn = document.getElementById("installer");
+const installHint = document.getElementById("installHint");
+
+window.addEventListener("beforeinstallprompt", e => {
+  e.preventDefault();
+  deferredPrompt = e;
+});
+
+window.addEventListener("appinstalled", () => {
+  deferredPrompt = null;
+  installBtn.disabled = true;
+  installBtn.textContent = "✓ ThunderOS installé";
+  installHint.textContent = "Installation terminée !";
+});
+
+installBtn.addEventListener("dblclick", async () => {
+  if (deferredPrompt) {
+    const promptEvent = deferredPrompt;
+    deferredPrompt = null;
+
+    try {
+      await promptEvent.prompt();
+      const result = await promptEvent.userChoice;
+
+      installHint.textContent =
+        result.outcome === "accepted"
+          ? "Installation acceptée."
+          : "Installation annulée.";
+    } catch {
+      installHint.textContent =
+        "L'installation automatique est indisponible.";
     }
+    return;
   }
 
-  // Tes boutons :
-  addDoubleClickListener('1.securityboot', 'https://apptos.pages.dev/');
-  addDoubleClickListener('3.securityboot', 'https://raw.githack.com/Shadowolfofficial/Tos/main/peb.html');
-  addDoubleClickListener('4.securityboot', 'Feature ThunderOsusb');
+  const ios = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-  // --- Redirige vers la page spéciale si lancé en mode standalone (PWA) ---
-
-  if (window.matchMedia('(display-mode: standalone)').matches) {
-    window.location.replace('https://t0s.pages.dev/addappnow');
-  }
-
-  // --- Vérifie l’expiration des tokens sur la page (optionnel)---
-
-  window.onload = function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('tok') && urlParams.has('exp')) {
-      const exp = parseInt(urlParams.get('exp'), 10);
-      if (Date.now() > exp) {
-        window.location.replace('https://t0s.pages.dev/404/');
-      }
-    }
-  };
+  installHint.textContent = ios
+    ? "Sur iPhone : ouvrez Partager, puis « Sur l'écran d'accueil »."
+    : "Ouvrez le menu du navigateur et choisissez « Installer l'application » ou « Ajouter à l'écran d'accueil ».";
+});
 </script>
+
 </body>
 </html>
-
-
-
-
-
-
